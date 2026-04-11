@@ -28,7 +28,6 @@ public class PlanetData : ScriptableObject
     [Range(1.0f, 120.0f)] public float pollutionAppearanceTimerMax = 45.0f;
     public float maxPollutionLevel = 100.0f;
     public float pollutionIncreasePerSeconds = 5.0f;
-    public float secondsToMaxPollution = 10.0f;
     public int pollutionHappinessMalus = 20;
     public int pollutionHealthMalus = 10;
     public float pollutionBrushSpeed = 0.5f;
@@ -46,4 +45,18 @@ public class PlanetData : ScriptableObject
     public float heatUpdateSpeed = 1.0f / 5.0f;
     public int heatBadHappinessMalus = 10;
     public float sunRotationSpeed = 1.0f;
+
+    [Header("Projectiles")]
+    [Range(1.0f, 120.0f)] public float projectileAppearanceTimerMin = 20.0f;
+    [Range(1.0f, 120.0f)] public float projectileAppearanceTimerMax = 40.0f;
+    public int maxProjecticles = 2;
+    public float projectileSpeed = 1.0f;
+    public int projectileHitHappinessMalus = 20;
+    public int projectileHitHealthMalus = 10;
+    public Vector3 projectileSpawnOffset;
+    [Range(1.0f, 50.0f)] public float projectileSpawnYRange = 3.0f;
+    public float projectileBarrierRadius = 2.75f;
+    public float projectileBarrierDefaultValue = Mathf.PI / 4.0f;
+    public float projectileBarrierValueOffset = Mathf.PI / 4.0f;
+    public float projectileBarrierSpeed = 0.5f;
 }

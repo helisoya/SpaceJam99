@@ -13,6 +13,7 @@ public class PlanetInput : MonoBehaviour
         ROTATION,
         POLLUTION,
         HEAT,
+        PROJECTILE,
         HEART
     }
 
@@ -43,6 +44,12 @@ public class PlanetInput : MonoBehaviour
                 if (value.isPressed)
                     planet.SetSunPosition(true);
                 break;
+            case InputMode.PROJECTILE:
+                if (value.isPressed)
+                    planet.SetProjectileBarrierUpValue(1);
+                else
+                    planet.SetProjectileBarrierUpValue(0);
+                break;
         }
     }
 
@@ -63,6 +70,12 @@ public class PlanetInput : MonoBehaviour
                 if (value.isPressed)
                     planet.SetSunPosition(false);
                 break;
+            case InputMode.PROJECTILE:
+                if (value.isPressed)
+                    planet.SetProjectileBarrierDownValue(1);
+                else
+                    planet.SetProjectileBarrierDownValue(0);
+                break;
         }
     }
 
@@ -79,6 +92,7 @@ public class PlanetInput : MonoBehaviour
         currentMode = mode;
 
         planet.EnablePollutionBrush(mode == InputMode.POLLUTION);
+        planet.EnableProjectileBarrier(mode == InputMode.PROJECTILE);
     }
 
     void Update()

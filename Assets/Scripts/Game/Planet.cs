@@ -17,6 +17,8 @@ public class Planet : MonoBehaviour
     [SerializeField] private PlanetData data;
     [SerializeField] private GameObject pollutionBrush;
     [SerializeField] private GameObject sunObj;
+    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private GameObject projectileBarrier;
 
     private int currentRotationLevel;
     private float currentRotationDecreaseTimer;
@@ -44,6 +46,13 @@ public class Planet : MonoBehaviour
     private float currentHappinessAutoRegenTimer;
     private Stack<bool> problemsStack;
 
+    private List<GameObject> projectiles;
+    private float currentProjectileSpawnTimer;
+    private float currentProjectileBarrierUpValue;
+    private float currentProjectileBarrierDownValue;
+    private float projectileBarrierCurrentValue;
+    public bool projectileBarrierEnabled { get { return projectileBarrier.activeInHierarchy; } }
+
     public bool isDead { get { return currentHealth == 0; } }
 
 
@@ -66,12 +75,18 @@ public class Planet : MonoBehaviour
         currentPollutionBrushValueTop = 0;
         currentPollutionBrushValue = 0;
 
+        projectiles = new List<GameObject>();
+        currentProjectileBarrierUpValue = 0;
+        currentProjectileBarrierDownValue = 0;
+        projectileBarrierCurrentValue = data.projectileBarrierDefaultValue;
+
         heatIsBad = false;
         heatValue = data.defaultHeat;
         sunIsInFront = true;
         currentSunValue = data.sunFrontPos;
 
         GenerateNewPollutionAppearanceTimer();
+        GenerateNewProjectileAppearanceTimer();
 
         // Update sun Position
         float posX = Mathf.Sin(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
@@ -98,6 +113,14 @@ public class Planet : MonoBehaviour
     }
 
     /// <summary>
+	/// Generates a new random timer for the appearance of projectiles
+	/// </summary>
+    private void GenerateNewProjectileAppearanceTimer()
+    {
+        currentProjectileSpawnTimer = Random.Range(data.projectileAppearanceTimerMin, data.projectileAppearanceTimerMax);
+    }
+
+    /// <summary>
 	/// Gets the rotation speed level
 	/// </summary>
 	/// <returns>The rotation speed level</returns>
@@ -111,12 +134,11 @@ public class Planet : MonoBehaviour
         if (isDead)
             return;
 
-        // Rotation Speed Checks
-
         UpdateRotation();
         UpdateHappiness();
         UpdatePollution();
         UpdateHeat();
+        UpdateProjectiles();
     }
 
     /// <summary>
@@ -176,6 +198,58 @@ public class Planet : MonoBehaviour
         {
             heatIsBad = true;
             RemoveProblem();
+        }
+    }
+
+    /// <summary>
+	/// Updates the projectile
+	/// </summary>
+    private void UpdateProjectiles()
+    {
+        if (projectileBarrierEnabled)
+        {
+            float side = currentProjectileBarrierUpValue - currentProjectileBarrierDownValue;
+
+            projectileBarrierCurrentValue = Mathf.Clamp(projectileBarrierCurrentValue + side * Time.deltaTime * data.projectileBarrierSpeed, 0, Mathf.PI / 2.0f);
+
+            float posX = Mathf.Sin(data.projectileBarrierValueOffset + projectileBarrierCurrentValue) * data.projectileBarrierRadius;
+            float posY = -Mathf.Cos(data.projectileBarrierValueOffset + projectileBarrierCurrentValue) * data.projectileBarrierRadius;
+
+            projectileBarrier.transform.position = new Vector3(posX, posY, 0);
+        }
+
+        currentProjectileSpawnTimer -= Time.deltaTime;
+
+        if (currentProjectileSpawnTimer <= 0)
+        {
+            GenerateNewProjectileAppearanceTimer();
+
+            if (projectiles.Count < data.maxProjecticles)
+            {
+                Projectile projectile = Instantiate(projectilePrefab);
+
+                Vector3 position = transform.position + data.projectileSpawnOffset;
+                position.y += Random.Range(-data.projectileSpawnYRange, data.projectileSpawnYRange);
+
+                projectile.transform.position = position;
+                projectile.Init((transform.position - position).normalized, data.projectileSpeed);
+                projectiles.Add(projectile.gameObject);
+            }
+        }
+    }
+
+    /// <summary>
+	/// Takes damage from a projectile
+	/// </summary>
+	/// <param name="obj">The projectile</param>
+    public void TakeDamage(GameObject obj)
+    {
+        if (projectiles.Contains(obj))
+        {
+            projectiles.Remove(obj);
+            AddHappiness(-data.projectileHitHappinessMalus);
+            AddHealth(-data.projectileHitHealthMalus);
+            Destroy(obj);
         }
     }
 
@@ -367,7 +441,9 @@ public class Planet : MonoBehaviour
         Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush active : {pollutionBrushActive}"); currentY += 20;
         Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush state (Top) : {currentPollutionBrushValueTop}"); currentY += 20;
         Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush state (Bottom) : {currentPollutionBrushValueBottom}"); currentY += 30;
-        Handles.Label(new Vector3(0, currentY, 0), $"Heat : {heatValue}"); currentY += 20;
+        Handles.Label(new Vector3(0, currentY, 0), $"Heat : {heatValue}"); currentY += 30;
+        Handles.Label(new Vector3(0, currentY, 0), $"Projectile Barrier value : {projectileBarrierCurrentValue}"); currentY += 20;
+        Handles.Label(new Vector3(0, currentY, 0), $"Projectile Spawn in : {currentProjectileSpawnTimer}"); currentY += 30;
         Handles.EndGUI();
     }
 #endif
@@ -405,6 +481,34 @@ public class Planet : MonoBehaviour
     {
         pollutionBrush.SetActive(enabled);
         currentPollutionBrushValue = 0;
+    }
+
+    /// <summary>
+	/// Sets the projectile barrier's up value
+	/// </summary>
+	/// <param name="value">The new up value</param>
+    public void SetProjectileBarrierUpValue(float value)
+    {
+        currentProjectileBarrierUpValue = value;
+    }
+
+    /// <summary>
+	/// Sets the projectile barrier's down value
+	/// </summary>
+	/// <param name="value">The new down value</param>
+    public void SetProjectileBarrierDownValue(float value)
+    {
+        currentProjectileBarrierDownValue = value;
+    }
+
+    /// <summary>
+    /// Enables the projectile barrier
+    /// </summary>
+    /// <param name="enabled">True if enabled</param>
+    public void EnableProjectileBarrier(bool enabled)
+    {
+        projectileBarrier.SetActive(enabled);
+        projectileBarrierCurrentValue = data.projectileBarrierDefaultValue;
     }
 
     /// <summary>

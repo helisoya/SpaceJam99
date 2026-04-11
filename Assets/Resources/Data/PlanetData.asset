@@ -18,6 +18,8 @@ MonoBehaviour:
   healthMalusNoHappiness: 1
   secondsToHappinessAutoRegen: 1
   happinessAutoRegenAmount: 1
+  rotationNotEnoughLevel: 4
+  rotationNotEnoughHappinessMalus: 5
   rotationSpeeds:
   - 0
   - 0.1
@@ -39,6 +41,30 @@ MonoBehaviour:
   pollutionAppearanceTimerMax: 45
   maxPollutionLevel: 100
   pollutionIncreasePerSeconds: 5
-  secondsToMaxPollution: 10
   pollutionHappinessMalus: 20
   pollutionHealthMalus: 10
+  pollutionBrushSpeed: 0.5
+  pollutionBrushNotActiveSpeed: 10
+  pollutionSideCleanHappinessBonus: 5
+  sunOrbitCenter: {x: 0, y: 0, z: 0}
+  sunOrbitRadius: 80
+  sunBehindPos: 0.8
+  sunFrontPos: 0.1
+  defaultHeat: 50
+  overheatTreshold: 90
+  freezeTreshold: 10
+  heatUpdateSpeed: 0.2
+  heatBadHappinessMalus: 10
+  sunRotationSpeed: 1
+  projectileAppearanceTimerMin: 20
+  projectileAppearanceTimerMax: 40
+  maxProjecticles: 2
+  projectileSpeed: 1
+  projectileHitHappinessMalus: 20
+  projectileHitHealthMalus: 10
+  projectileSpawnOffset: {x: 15, y: 0, z: 0}
+  projectileSpawnYRange: 5
+  projectileBarrierRadius: 2.75
+  projectileBarrierDefaultValue: 0.7853982
+  projectileBarrierValueOffset: 0.7853982
+  projectileBarrierSpeed: 0.5
