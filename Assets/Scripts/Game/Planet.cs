@@ -16,6 +16,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private Renderer pollutionRenderer;
     [SerializeField] private PlanetData data;
     [SerializeField] private GameObject pollutionBrush;
+    [SerializeField] private GameObject sunObj;
 
     private int currentRotationLevel;
     private float currentRotationDecreaseTimer;
@@ -32,6 +33,11 @@ public class Planet : MonoBehaviour
     private float currentPollutionBrushValue;
     public bool pollutionBrushEnabled { get { return pollutionBrush.activeInHierarchy; } }
 
+    private bool heatIsBad;
+    private float heatValue;
+    private bool sunIsInFront;
+    private float currentSunValue;
+
     private int currentHealth;
     private int currentHappiness;
     private float currentNoHappinessTimer;
@@ -43,21 +49,44 @@ public class Planet : MonoBehaviour
 
     void Start()
     {
-        problemsStack = new Stack<bool>();
         currentRotationLevel = data.defaultRotationLevel;
         currentRotationDecreaseTimer = data.secondsToRotationDecrease;
+
         currentHealth = data.maxHealth;
         currentHappiness = data.maxHappiness;
+        currentHappinessAutoRegenTimer = data.secondsToHappinessAutoRegen;
+        problemsStack = new Stack<bool>();
+
         pollutionActive = false;
         currentPollutionLevel = 0;
         pollutionCanIncrease = false;
-        currentHappinessAutoRegenTimer = data.secondsToHappinessAutoRegen;
         pollutionBrushActive = false;
         pollutionBrushIsTop = false;
         currentPollutionBrushValueBottom = 0;
         currentPollutionBrushValueTop = 0;
         currentPollutionBrushValue = 0;
+
+        heatIsBad = false;
+        heatValue = data.defaultHeat;
+        sunIsInFront = true;
+        currentSunValue = data.sunFrontPos;
+
         GenerateNewPollutionAppearanceTimer();
+
+        // Update sun Position
+        float posX = Mathf.Sin(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
+        float posZ = Mathf.Cos(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
+
+        sunObj.transform.position = data.sunOrbitCenter + new Vector3(posX, 0, posZ);
+    }
+
+    /// <summary>
+	/// Changes the sun's position
+	/// </summary>
+	/// <param name="isFront">True if the sun is in front</param>
+    public void SetSunPosition(bool isFront)
+    {
+        sunIsInFront = isFront;
     }
 
     /// <summary>
@@ -87,6 +116,7 @@ public class Planet : MonoBehaviour
         UpdateRotation();
         UpdateHappiness();
         UpdatePollution();
+        UpdateHeat();
     }
 
     /// <summary>
@@ -117,6 +147,41 @@ public class Planet : MonoBehaviour
             currentNoHappinessTimer = data.secondsToHealthDecreaseNoHappiness;
     }
 
+    /// <summary>
+	/// Updates the planet's heat
+	/// </summary>
+    private void UpdateHeat()
+    {
+        float target = sunIsInFront ? data.sunFrontPos : data.sunBehindPos;
+        float min = currentSunValue < target ? currentSunValue : target;
+        float max = currentSunValue < target ? target : currentSunValue;
+        float side = currentSunValue < target ? 1 : -1;
+        currentSunValue = Mathf.Clamp(currentSunValue + Time.deltaTime * data.sunRotationSpeed * side, min, max);
+
+        float posX = Mathf.Sin(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
+        float posZ = Mathf.Cos(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
+
+        sunObj.transform.position = data.sunOrbitCenter + new Vector3(posX, 0, posZ);
+
+
+        heatValue += Time.deltaTime * data.heatUpdateSpeed * (sunIsInFront ? 1.0f : -1.0f);
+
+        if (heatValue <= data.freezeTreshold || heatValue >= data.overheatTreshold)
+        {
+            heatIsBad = true;
+            AddHappiness(data.heatBadHappinessMalus);
+            AddProblem();
+        }
+        else if (heatIsBad)
+        {
+            heatIsBad = true;
+            RemoveProblem();
+        }
+    }
+
+    /// <summary>
+	/// Updates the pollution
+	/// </summary>
     private void UpdatePollution()
     {
         if (pollutionBrushEnabled)
@@ -301,7 +366,8 @@ public class Planet : MonoBehaviour
         Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush visible : {pollutionBrushEnabled}"); currentY += 20;
         Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush active : {pollutionBrushActive}"); currentY += 20;
         Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush state (Top) : {currentPollutionBrushValueTop}"); currentY += 20;
-        Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush state (Bottom) : {currentPollutionBrushValueBottom}"); currentY += 20;
+        Handles.Label(new Vector3(0, currentY, 0), $"Pollution Brush state (Bottom) : {currentPollutionBrushValueBottom}"); currentY += 30;
+        Handles.Label(new Vector3(0, currentY, 0), $"Heat : {heatValue}"); currentY += 20;
         Handles.EndGUI();
     }
 #endif

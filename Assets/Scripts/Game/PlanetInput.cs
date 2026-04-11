@@ -12,6 +12,7 @@ public class PlanetInput : MonoBehaviour
     {
         ROTATION,
         POLLUTION,
+        HEAT,
         HEART
     }
 
@@ -38,6 +39,10 @@ public class PlanetInput : MonoBehaviour
                 else
                     planet.StopPollutionBrush(true);
                 break;
+            case InputMode.HEAT:
+                if (value.isPressed)
+                    planet.SetSunPosition(true);
+                break;
         }
     }
 
@@ -53,6 +58,10 @@ public class PlanetInput : MonoBehaviour
                     planet.StartPollutionBrush(false);
                 else
                     planet.StopPollutionBrush(false);
+                break;
+            case InputMode.HEAT:
+                if (value.isPressed)
+                    planet.SetSunPosition(false);
                 break;
         }
     }

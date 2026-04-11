@@ -34,4 +34,16 @@ public class PlanetData : ScriptableObject
     public float pollutionBrushSpeed = 0.5f;
     public float pollutionBrushNotActiveSpeed = 10.0f;
     public int pollutionSideCleanHappinessBonus = 5;
+
+    [Header("Heat")]
+    public Vector3 sunOrbitCenter = Vector3.zero;
+    public float sunOrbitRadius = 30.0f;
+    public float sunBehindPos = 0.5f;
+    public float sunFrontPos = 0.0f;
+    public float defaultHeat = 50.0f;
+    public float overheatTreshold = 90.0f;
+    public float freezeTreshold = 10.0f;
+    public float heatUpdateSpeed = 1.0f / 5.0f;
+    public int heatBadHappinessMalus = 10;
+    public float sunRotationSpeed = 1.0f;
 }
