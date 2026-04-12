@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 /// <summary>
 /// Handles the planet
@@ -19,6 +20,9 @@ public class Planet : MonoBehaviour
     [SerializeField] private GameObject sunObj;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private GameObject projectileBarrier;
+
+    [Header("Audio")]
+    [SerializeField] private UnityEvent<bool> onEnableCheckMode;
 
     private int currentRotationLevel;
     private float currentRotationDecreaseTimer;
@@ -53,11 +57,16 @@ public class Planet : MonoBehaviour
     private float projectileBarrierCurrentValue;
     public bool projectileBarrierEnabled { get { return projectileBarrier.activeInHierarchy; } }
 
+    private bool checkModeEnabled;
+
+    private string planetName;
+    private bool isActive;
     public bool isDead { get { return currentHealth == 0; } }
 
 
     void Start()
     {
+        isActive = false;
         currentRotationLevel = data.defaultRotationLevel;
         currentRotationDecreaseTimer = data.secondsToRotationDecrease;
 
@@ -85,6 +94,8 @@ public class Planet : MonoBehaviour
         sunIsInFront = true;
         currentSunValue = data.sunFrontPos;
 
+        checkModeEnabled = false;
+
         GenerateNewPollutionAppearanceTimer();
         GenerateNewProjectileAppearanceTimer();
 
@@ -93,6 +104,43 @@ public class Planet : MonoBehaviour
         float posZ = Mathf.Cos(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
 
         sunObj.transform.position = data.sunOrbitCenter + new Vector3(posX, 0, posZ);
+    }
+
+    /// <summary>
+	/// Checks if the planet is active or not
+	/// </summary>
+	/// <returns>True if it is active</returns>
+    public bool IsActive()
+    {
+        return isActive;
+    }
+
+    /// <summary>
+	/// Gets the planet's name
+	/// </summary>
+	/// <returns>Its name</returns>
+    public string GetPlanetName()
+    {
+        return planetName;
+
+    }
+
+    /// <summary>
+    /// Sets the planet's name
+    /// </summary>
+    /// <param name="planetName">The new name</param>
+    public void SetPlanetName(string planetName)
+    {
+        this.planetName = planetName;
+    }
+
+    /// <summary>
+	/// Enables the planet
+	/// </summary>
+	/// <param name="isActive">True if the planet is now enabled</param>
+    public void SetActive(bool isActive)
+    {
+        this.isActive = isActive;
     }
 
     /// <summary>
@@ -131,7 +179,7 @@ public class Planet : MonoBehaviour
 
     void Update()
     {
-        if (isDead)
+        if (isDead || !isActive)
             return;
 
         UpdateRotation();
@@ -426,6 +474,9 @@ public class Planet : MonoBehaviour
 #if UNITY_EDITOR
     void OnGUI()
     {
+        if (!checkModeEnabled)
+            return;
+
         Handles.BeginGUI();
         int currentY = 0;
         Handles.Label(new Vector3(0, currentY, 0), $"Health : {currentHealth}"); currentY += 20;
@@ -534,5 +585,15 @@ public class Planet : MonoBehaviour
         {
             pollutionBrushActive = false;
         }
+    }
+
+    /// <summary>
+	/// Enabled the check mode
+	/// </summary>
+	/// <param name="enabled">True if check mode is enabled</param>
+    public void EnableCheckMode(bool enabled)
+    {
+        checkModeEnabled = enabled;
+        onEnableCheckMode.Invoke(enabled);
     }
 }
