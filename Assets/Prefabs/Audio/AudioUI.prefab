@@ -48,3 +48,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee20e4e798f2f247ad50314d61393cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  centralClick:
+    Guid:
+      Data1: -1157348374
+      Data2: 1291380926
+      Data3: 1847517876
+      Data4: 1769679690
+    Path: event:/UI/Click
+  crankUp:
+    Guid:
+      Data1: 1346224284
+      Data2: 1304059114
+      Data3: 524314240
+      Data4: -90551030
+    Path: event:/UI/CrankUp
+  crankDown:
+    Guid:
+      Data1: -1612672561
+      Data2: 1259785981
+      Data3: -329490027
+      Data4: 320538651
+    Path: event:/UI/CrankDown
+  tutoIn:
+    Guid:
+      Data1: 1161977639
+      Data2: 1257232878
+      Data3: 698581424
+      Data4: -81678612
+    Path: event:/UI/TutoIn
+  tutoOut:
+    Guid:
+      Data1: 2119062952
+      Data2: 1203007210
+      Data3: -1183140968
+      Data4: -1352004216
+    Path: event:/UI/TutoOut
+  giveName:
+    Guid:
+      Data1: -820496205
+      Data2: 1075239260
+      Data3: -1279149378
+      Data4: 1129325777
+    Path: event:/UI/GiveName
+  startGame:
+    Guid:
+      Data1: -1159274673
+      Data2: 1141066815
+      Data3: -959241028
+      Data4: 1296704467
+    Path: event:/UI/StartGame
