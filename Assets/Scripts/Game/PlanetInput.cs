@@ -21,14 +21,15 @@ public class PlanetInput : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Planet planet;
-
+    [SerializeField] private GameGUI gui;
 
     private bool pointerOverUI = false;
     private InputMode currentMode = InputMode.ROTATION;
+    private bool paused = false;
 
     void OnLeftClick(InputValue value) // Click on the top of the crank
     {
-        if (pointerOverUI)
+        if (pointerOverUI && !paused)
             return;
 
         InputCrankTop(value.isPressed);
@@ -36,14 +37,31 @@ public class PlanetInput : MonoBehaviour
 
     void OnRightClick(InputValue value) // Click on the bottom of the crank
     {
-        if (pointerOverUI)
+        if (pointerOverUI && !paused)
             return;
 
         InputCrankBottom(value.isPressed);
     }
 
+    void OnPauseMenu(InputValue value)
+    {
+        paused = !paused;
+
+        planet.SetActive(!paused);
+        gui.EnablePause(paused);
+    }
+
     void OnMousePosition(InputValue value)
     {
+    }
+
+    /// <summary>
+	/// Gets the current input mode
+	/// </summary>
+	/// <returns>The current input mode</returns>
+    public InputMode GetInputMode()
+    {
+        return currentMode;
     }
 
     /// <summary>
@@ -52,6 +70,14 @@ public class PlanetInput : MonoBehaviour
     /// <param name="isPressed">True if the crank is now pressed</param>
     public void InputCrankBottom(bool isPressed)
     {
+        if (paused)
+        {
+            paused = false;
+            planet.SetActive(true);
+            gui.EnablePause(false);
+            return;
+        }
+
         if (!planet.IsActive())
             return;
 

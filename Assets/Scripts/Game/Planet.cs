@@ -23,6 +23,17 @@ public class Planet : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private UnityEvent<bool> onEnableCheckMode;
+    [SerializeField] private UnityEvent<int> onRotationLevelChange;
+    [SerializeField] private UnityEvent<int> onHappinessChange;
+    [SerializeField] private UnityEvent<float> onTemperatureChange;
+    [SerializeField] private UnityEvent<int> onHealthChange;
+    [SerializeField] private UnityEvent onTakeDamage;
+    [SerializeField] private UnityEvent onTooMuchSpeed;
+    [SerializeField] private UnityEvent onTooHot;
+    [SerializeField] private UnityEvent onTooCold;
+    [SerializeField] private UnityEvent<bool> onCleanPollution;
+    [SerializeField] private UnityEvent onFullyPolluted;
+    [SerializeField] private UnityEvent onProjectileSpawn;
 
     private int currentRotationLevel;
     private float currentRotationDecreaseTimer;
@@ -95,6 +106,11 @@ public class Planet : MonoBehaviour
         currentSunValue = data.sunFrontPos;
 
         checkModeEnabled = false;
+
+        onRotationLevelChange.Invoke(currentRotationLevel);
+        onHappinessChange.Invoke(currentHappiness);
+        onHealthChange.Invoke(currentHealth);
+        onTemperatureChange.Invoke(heatValue);
 
         GenerateNewPollutionAppearanceTimer();
         GenerateNewProjectileAppearanceTimer();
@@ -202,6 +218,8 @@ public class Planet : MonoBehaviour
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
         }
+
+        onHealthChange.Invoke(currentHealth);
     }
 
     /// <summary>
@@ -215,6 +233,8 @@ public class Planet : MonoBehaviour
 
         if (lastValue != currentHappiness && currentHappiness == 0) // Reset timer only when getting to 0 the first time
             currentNoHappinessTimer = data.secondsToHealthDecreaseNoHappiness;
+
+        onHappinessChange.Invoke(currentHappiness);
     }
 
     /// <summary>
@@ -236,8 +256,14 @@ public class Planet : MonoBehaviour
 
         heatValue += Time.deltaTime * data.heatUpdateSpeed * (sunIsInFront ? 1.0f : -1.0f);
 
-        if (heatValue <= data.freezeTreshold || heatValue >= data.overheatTreshold)
+        onTemperatureChange.Invoke(heatValue);
+
+        if (!heatIsBad && (heatValue <= data.freezeTreshold || heatValue >= data.overheatTreshold))
         {
+            if (heatValue <= data.freezeTreshold)
+                onTooCold.Invoke();
+            else
+                onTooHot.Invoke();
             heatIsBad = true;
             AddHappiness(data.heatBadHappinessMalus);
             AddProblem();
@@ -274,6 +300,7 @@ public class Planet : MonoBehaviour
 
             if (projectiles.Count < data.maxProjecticles)
             {
+                onProjectileSpawn.Invoke();
                 Projectile projectile = Instantiate(projectilePrefab);
 
                 Vector3 position = transform.position + data.projectileSpawnOffset;
@@ -294,6 +321,7 @@ public class Planet : MonoBehaviour
     {
         if (projectiles.Contains(obj))
         {
+            onTakeDamage.Invoke();
             projectiles.Remove(obj);
             AddHappiness(-data.projectileHitHappinessMalus);
             AddHealth(-data.projectileHitHealthMalus);
@@ -457,10 +485,12 @@ public class Planet : MonoBehaviour
             {
                 RemoveProblem();
                 currentRotationLevel = data.rotationLevelAfterTooMuch;
+                onRotationLevelChange.Invoke(currentRotationLevel);
                 currentRotationDecreaseTimer = data.secondsToRotationDecrease;
             }
             else if (currentRotationLevel > 0)
             {
+                onRotationLevelChange.Invoke(currentRotationLevel);
                 currentRotationLevel--;
                 currentRotationDecreaseTimer = data.secondsToRotationDecrease;
                 if (currentRotationLevel <= data.rotationNotEnoughLevel)
@@ -516,12 +546,15 @@ public class Planet : MonoBehaviour
             AddProblem();
             currentRotationDecreaseTimer = data.secondsToRotationDecreaseWithTooMuch;
             AddHappiness(-data.rotationTooMuchHappinessMalus);
+            onTooMuchSpeed.Invoke();
         }
         else
         {
             // Still good
             currentRotationDecreaseTimer = data.secondsToRotationDecrease;
         }
+
+        onRotationLevelChange.Invoke(currentRotationLevel);
     }
 
     /// <summary>
@@ -570,6 +603,7 @@ public class Planet : MonoBehaviour
     {
         if (!pollutionBrushActive)
         {
+            onCleanPollution.Invoke(true);
             pollutionBrushActive = true;
             pollutionBrushIsTop = top;
         }
@@ -583,6 +617,7 @@ public class Planet : MonoBehaviour
     {
         if (pollutionBrushActive && pollutionBrushIsTop == top)
         {
+            onCleanPollution.Invoke(false);
             pollutionBrushActive = false;
         }
     }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +14,16 @@ public class GameGUI : MonoBehaviour
     [SerializeField] private GameObject tutorialRoot;
     [SerializeField] private GameObject nameRoot;
     [SerializeField] private TMP_InputField nameInputField;
+    [SerializeField] private GameObject pauseRoot;
+
+    [Header("Input Mode")]
+    [SerializeField] private Image modeSprite;
+    [SerializeField] private RectTransform modeTransform;
+    [SerializeField] private Sprite[] modeSprites;
+    [SerializeField] private float modeUnactiveTime = 2.0f;
+    private float modeTimeRemaining;
+    private bool modeVisible = false;
+
 
     [Header("Audio")]
     [SerializeField] private UnityEvent<bool> onCrankTop;
@@ -38,7 +49,16 @@ public class GameGUI : MonoBehaviour
     public void EnableCrankTop(bool enabled)
     {
         onCrankTop.Invoke(enabled);
-        planetInput.InputCrankTop(enabled);
+
+        if (modeVisible)
+        {
+            planetInput.IncrementMode();
+            modeTimeRemaining = modeUnactiveTime;
+        }
+        else
+        {
+            planetInput.InputCrankTop(enabled);
+        }
     }
 
     /// <summary>
@@ -48,7 +68,25 @@ public class GameGUI : MonoBehaviour
     public void EnableCrankBottom(bool enabled)
     {
         onCrankBottom.Invoke(enabled);
-        planetInput.InputCrankBottom(enabled);
+
+        if (modeVisible)
+        {
+            planetInput.IncrementMode();
+            modeTimeRemaining = modeUnactiveTime;
+        }
+        else
+        {
+            planetInput.InputCrankBottom(enabled);
+        }
+    }
+
+    /// <summary>
+	/// Enables the pause menu
+	/// </summary>
+	/// <param name="enabled">True if enabled</param>
+    public void EnablePause(bool enabled)
+    {
+        pauseRoot.SetActive(enabled);
     }
 
     /// <summary>
@@ -75,7 +113,34 @@ public class GameGUI : MonoBehaviour
         }
         else if (!tutorialRoot.activeInHierarchy && !nameRoot.activeInHierarchy)
         {
-            planetInput.IncrementMode();
+            if (modeVisible)
+            {
+                planetInput.IncrementMode();
+                modeTimeRemaining = modeUnactiveTime;
+            }
+            else
+            {
+                modeVisible = true;
+                modeTimeRemaining = modeUnactiveTime;
+                modeTransform.anchoredPosition = new Vector2(0, -50);
+                modeTransform.DOAnchorPos(new Vector2(0, 90), 0.3f).SetEase(Ease.InQuad);
+            }
+
+        }
+    }
+
+    void Update()
+    {
+        if (modeVisible)
+        {
+            modeTimeRemaining -= Time.deltaTime;
+            modeSprite.sprite = modeSprites[(int)planetInput.GetInputMode()];
+
+            if (modeTimeRemaining <= 0)
+            {
+                modeVisible = false;
+                modeTransform.DOAnchorPos(new Vector2(0, -50), 0.3f).SetEase(Ease.InQuad);
+            }
         }
     }
 }
