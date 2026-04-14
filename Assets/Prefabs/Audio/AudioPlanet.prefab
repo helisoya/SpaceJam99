@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6477291139917941785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4749635240641196679}
+  - component: {fileID: -6142009652306690185}
+  m_Layer: 0
+  m_Name: AudioPlanet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4749635240641196679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477291139917941785}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6142009652306690185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477291139917941785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986a0dbeee241c4fb84bd1bcfe50966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  impact:
+    Guid:
+      Data1: -1175778535
+      Data2: 1080295535
+      Data3: 1378537104
+      Data4: -1484512870
+    Path: event:/Dugong/ProjectileImpact
+  dizzyStars:
+    Guid:
+      Data1: 2812436
+      Data2: 1155099861
+      Data3: 604891522
+      Data4: 923882788
+    Path: event:/Dugong/DizzyStars
+  tooHot:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  tooCold:
+    Guid:
+      Data1: 665078081
+      Data2: 1227716493
+      Data3: -1563717236
+      Data4: 1352975500
+    Path: event:/Dugong/Frozen
+  cleanPollution:
+    Guid:
+      Data1: 856952609
+      Data2: 1091721812
+      Data3: -1329191549
+      Data4: -630620549
+    Path: event:/Dugong/Sponge
+  fullyPolluted:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  onProjectileSpawn:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
