@@ -2743,6 +2743,39 @@ MonoBehaviour:
   onEnableCheckMode:
     m_PersistentCalls:
       m_Calls: []
+  onRotationLevelChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onHappinessChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTemperatureChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onTooMuchSpeed:
+    m_PersistentCalls:
+      m_Calls: []
+  onTooHot:
+    m_PersistentCalls:
+      m_Calls: []
+  onTooCold:
+    m_PersistentCalls:
+      m_Calls: []
+  onCleanPollution:
+    m_PersistentCalls:
+      m_Calls: []
+  onFullyPolluted:
+    m_PersistentCalls:
+      m_Calls: []
+  onProjectileSpawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1189700239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3519,8 +3552,8 @@ RectTransform:
   - {fileID: 1717710875}
   - {fileID: 413698121}
   - {fileID: 2040825450}
-  - {fileID: 875979055}
   - {fileID: 530971832}
+  - {fileID: 875979055}
   - {fileID: 2071176242}
   - {fileID: 641333586}
   m_Father: {fileID: 0}
