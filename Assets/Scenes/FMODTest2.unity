@@ -4503,7 +4503,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
       propertyPath: impact.Path
-      value: event:/Dugong/ProjectileImpact
+      value: event:/Planet/ProjectileImpact
       objectReference: {fileID: 0}
     - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
       propertyPath: impact.Guid.Data1

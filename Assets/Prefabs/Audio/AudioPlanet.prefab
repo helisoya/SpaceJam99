@@ -50,46 +50,46 @@ MonoBehaviour:
       Data2: 1080295535
       Data3: 1378537104
       Data4: -1484512870
-    Path: event:/Dugong/ProjectileImpact
+    Path: event:/Planet/ProjectileImpact
   dizzyStars:
     Guid:
       Data1: 2812436
       Data2: 1155099861
       Data3: 604891522
       Data4: 923882788
-    Path: event:/Dugong/DizzyStars
+    Path: event:/Planet/DizzyStars
   tooHot:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 425434859
+      Data2: 1109870564
+      Data3: 28751286
+      Data4: -1576955082
+    Path: event:/Planet/TooHot
   tooCold:
     Guid:
       Data1: 665078081
       Data2: 1227716493
       Data3: -1563717236
       Data4: 1352975500
-    Path: event:/Dugong/Frozen
+    Path: event:/Planet/Frozen
   cleanPollution:
     Guid:
       Data1: 856952609
       Data2: 1091721812
       Data3: -1329191549
       Data4: -630620549
-    Path: event:/Dugong/Sponge
+    Path: event:/Planet/Sponge
   fullyPolluted:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1666584802
+      Data2: 1200566888
+      Data3: -381174339
+      Data4: 1420477010
+    Path: event:/Planet/TooPolluted
   onProjectileSpawn:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1479059751
+      Data2: 1150184399
+      Data3: -221620049
+      Data4: 1227825747
+    Path: event:/UI/Alert
