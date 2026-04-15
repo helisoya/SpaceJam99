@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Represents a projectile
@@ -7,6 +8,8 @@ public class Projectile : MonoBehaviour
 {
     private Vector3 direction;
     private float speed;
+
+    [SerializeField] private UnityEvent onDestroyed;
 
     /// <summary>
 	/// Initialize the component
@@ -28,6 +31,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            onDestroyed.Invoke();
             Destroy(gameObject);
             return;
         }

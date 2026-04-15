@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4075450767729348685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5201716365997474130}
+  - component: {fileID: 6204758934606086742}
+  m_Layer: 5
+  m_Name: AudioUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5201716365997474130
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075450767729348685}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6204758934606086742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075450767729348685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee20e4e798f2f247ad50314d61393cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  centralClick:
+    Guid:
+      Data1: -1157348374
+      Data2: 1291380926
+      Data3: 1847517876
+      Data4: 1769679690
+    Path: event:/UI/Click
+  crankUp:
+    Guid:
+      Data1: 1346224284
+      Data2: 1304059114
+      Data3: 524314240
+      Data4: -90551030
+    Path: event:/UI/CrankUp
+  crankDown:
+    Guid:
+      Data1: -1612672561
+      Data2: 1259785981
+      Data3: -329490027
+      Data4: 320538651
+    Path: event:/UI/CrankDown
+  tutoIn:
+    Guid:
+      Data1: 1161977639
+      Data2: 1257232878
+      Data3: 698581424
+      Data4: -81678612
+    Path: event:/UI/TutoIn
+  tutoOut:
+    Guid:
+      Data1: 2119062952
+      Data2: 1203007210
+      Data3: -1183140968
+      Data4: -1352004216
+    Path: event:/UI/TutoOut
+  giveName:
+    Guid:
+      Data1: -820496205
+      Data2: 1075239260
+      Data3: -1279149378
+      Data4: 1129325777
+    Path: event:/UI/GiveName
+  startGame:
+    Guid:
+      Data1: -1159274673
+      Data2: 1141066815
+      Data3: -959241028
+      Data4: 1296704467
+    Path: event:/UI/StartGame
