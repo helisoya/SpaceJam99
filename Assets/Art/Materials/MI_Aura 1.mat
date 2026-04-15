@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MI_Aura
+  m_Name: MI_Aura 1
   m_Shader: {fileID: -6465566751694194690, guid: 6fa12d5a8b74e2d49b2dc89883b691c8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -59,9 +59,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FresnelNoiseScale: 100
-    - _InteriorSpread: 1.5
-    - _PowerFresnel: 3
+    - _FresnelNoiseScale: 50
+    - _InteriorSpread: 20
+    - _PowerFresnel: 1.92
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScaleNoiseStars: 8000
@@ -73,11 +73,11 @@ Material:
     - _StarsTilling02: 2
     m_Colors:
     - _Color: {r: 3.257786, g: 1.3755784, b: 13.886792, a: 1}
-    - _FresnelColor: {r: 12.127228, g: 3.7174764, b: 25.358501, a: 1}
-    - _InteriorColor: {r: 39.84906, g: 10.431691, b: 19.024292, a: 1}
+    - _FresnelColor: {r: 4.082981, g: 3.6790385, b: 7.0266323, a: 1}
+    - _InteriorColor: {r: 23.665157, g: 42.15978, b: 38.618256, a: 1}
     - _InteriorPosition: {r: 0, g: 0, b: 0, a: 0}
-    - _SpeedStars01: {r: 0.04, g: -0.05, b: 0, a: 0}
-    - _SpeedStars02: {r: 0.075, g: 0.001, b: 0, a: 0}
+    - _SpeedStars01: {r: 0.01, g: -0.005, b: 0, a: 0}
+    - _SpeedStars02: {r: 0.0075, g: 0.001, b: 0, a: 0}
     - _StarsTiling: {r: 2, g: 2, b: 0, a: 0}
     - _StarsTiling01: {r: 2, g: 2, b: 0, a: 0}
     - _StarsTiling02: {r: 3.5, g: 3.5, b: 0, a: 0}
