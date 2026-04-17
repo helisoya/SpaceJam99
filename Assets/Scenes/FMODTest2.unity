@@ -2473,6 +2473,171 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRotationLevelChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnRotationLevelChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHappinessChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnHappinessChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTemperatureChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnTemperatureChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnHealthChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnImpact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTooMuchSpeed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnDizzyStars
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTooHot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnTooHot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTooCold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnTooCold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onCleanPollution:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnCleanPollution
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFullyPolluted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnFullyPolluted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onProjectileSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4622827512661443295}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnProjectileSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &1189700239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2516,6 +2681,7 @@ Transform:
   - {fileID: 434541018}
   - {fileID: 263673592}
   - {fileID: 1276547542}
+  - {fileID: 4622827512661443296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18}
 --- !u!135 &1189700241
@@ -2886,6 +3052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlanetInput
   planet: {fileID: 1189700238}
+  gui: {fileID: 0}
 --- !u!4 &1499417459
 Transform:
   m_ObjectHideFlags: 0
@@ -3291,6 +3458,11 @@ MonoBehaviour:
   tutorialRoot: {fileID: 1717710874}
   nameRoot: {fileID: 2040825449}
   nameInputField: {fileID: 761245577}
+  pauseRoot: {fileID: 0}
+  modeSprite: {fileID: 0}
+  modeTransform: {fileID: 0}
+  modeSprites: []
+  modeUnactiveTime: 2
   onCrankTop:
     m_PersistentCalls:
       m_Calls: []
@@ -4321,6 +4493,99 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f644ddeb7d7169249a1912565d3c4435, type: 3}
+--- !u!1001 &4622827512661443294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1189700240}
+    m_Modifications:
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: impact.Path
+      value: event:/Planet/ProjectileImpact
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: impact.Guid.Data1
+      value: -1175778535
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: impact.Guid.Data2
+      value: 1080295535
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: impact.Guid.Data3
+      value: 1378537104
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: impact.Guid.Data4
+      value: -1484512870
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477291139917941785, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: m_Name
+      value: AudioPlanet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+--- !u!114 &4622827512661443295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+  m_PrefabInstance: {fileID: 4622827512661443294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986a0dbeee241c4fb84bd1bcfe50966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!4 &4622827512661443296 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+  m_PrefabInstance: {fileID: 4622827512661443294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4845736025584832338
 PrefabInstance:
   m_ObjectHideFlags: 0

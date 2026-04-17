@@ -97,3 +97,10 @@ MonoBehaviour:
       Data3: -959241028
       Data4: 1296704467
     Path: event:/UI/StartGame
+  gameMusic:
+    Guid:
+      Data1: 1958128432
+      Data2: 1309062194
+      Data3: 1361209782
+      Data4: 1639484912
+    Path: event:/Music/Music 2

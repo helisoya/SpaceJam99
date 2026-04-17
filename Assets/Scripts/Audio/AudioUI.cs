@@ -1,5 +1,7 @@
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioUI : MonoBehaviour
 {
@@ -10,7 +12,10 @@ public class AudioUI : MonoBehaviour
     [SerializeField] private EventReference tutoOut;
     [SerializeField] private EventReference giveName;
     [SerializeField] private EventReference startGame;
+    [SerializeField] private EventReference gameMusic;
 
+    EventInstance gameMusicInstance;
+    
     public void OnCentralClick()
     {
         RuntimeManager.PlayOneShot(centralClick);
@@ -41,11 +46,21 @@ public class AudioUI : MonoBehaviour
     public void OnGiveName()
     {
         RuntimeManager.PlayOneShot(giveName);
+        
     }
 
     public void OnStartGame()
     {
         RuntimeManager.PlayOneShot(startGame);
+        gameMusicInstance = RuntimeManager.CreateInstance(gameMusic);
+        gameMusicInstance.start();
+        gameMusicInstance.release();
+    }
+
+    public void OnEndGame()
+    {
+        gameMusicInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        gameMusicInstance.release();
     }
 
 }
