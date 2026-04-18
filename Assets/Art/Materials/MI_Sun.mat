@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5804769027171207999
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
-  version: 10
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -21,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_Sun
-  m_Shader: {fileID: -6465566751694194690, guid: 7cf109737fe617246921d4172bc12bdf, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 36487420c50491749b791b61a3a1a045, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -37,14 +24,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_1611c8b93b4147ee91194beda7d7f638_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: aab874aaec4261148a2813e160951699, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_c724e2b5e0c94b97852a4317cbf4fd1a_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 0c850fc4bf5f9824092df87ceb2a633f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,21 +38,31 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FresnelNoisePower: 3
-    - _FresnelPower: 0
-    - _FresnelScale: 20
-    - _FresnelSpeed: 0.2
-    - _GalaxyTiling: 1
+    - _CellDensity: 217.9
+    - _CellSpeed: 3
+    - _DistortionScale: 22.02
+    - _NoisePower: 5.63
+    - _NoiseScale: 36.09
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StarsSaturation: 0
-    - _StarsTiling: 1
+    - _SolarFlare: 0.05
+    - _TwirlStrenght: 3.7
     m_Colors:
-    - _FresnelColor: {r: 3.5471706, g: 2.357863, b: 0.35285994, a: 1}
-    - _GalaxyColor: {r: 2.2855563, g: 2.2660942, b: 0.51454926, a: 1}
-    - _GalaxySpeed: {r: 0.07, g: 0.03, b: 0, a: 0}
-    - _StarsColor: {r: 4.256235, g: 3.2539296, b: 0.42339516, a: 1}
-    - _StarsOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _StarsSpeed: {r: 0.08, g: 0.1, b: 0, a: 0}
+    - _BaseColor: {r: 256, g: 20.013596, b: 0, a: 1}
+    - _CellColor: {r: 10.680627, g: 0.106753685, b: 0, a: 1}
+    - _PanSpeed: {r: 0.1, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!114 &4729224832412584695
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
