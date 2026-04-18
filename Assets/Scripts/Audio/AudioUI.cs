@@ -46,15 +46,17 @@ public class AudioUI : MonoBehaviour
     public void OnGiveName()
     {
         RuntimeManager.PlayOneShot(giveName);
+        RuntimeManager.StudioSystem.setParameterByName("TutoDone", 0);
+        gameMusicInstance = RuntimeManager.CreateInstance(gameMusic);
+        gameMusicInstance.start();
+        gameMusicInstance.release();
         
     }
 
     public void OnStartGame()
     {
         RuntimeManager.PlayOneShot(startGame);
-        gameMusicInstance = RuntimeManager.CreateInstance(gameMusic);
-        gameMusicInstance.start();
-        gameMusicInstance.release();
+        RuntimeManager.StudioSystem.setParameterByName("TutoDone", 1);
     }
 
     public void OnEndGame()
