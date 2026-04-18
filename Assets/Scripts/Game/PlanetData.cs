@@ -8,6 +8,8 @@ public class PlanetData : ScriptableObject
     public int maxHealth = 100;
     public float secondsToHealthDecreaseNoHappiness = 1.0f;
     public int healthMalusNoHappiness = 1;
+    public float secondsToHappinessDecreaseWhenProblem = 1.0f;
+    public int happinessMalusWhenProblem = 1;
     public float secondsToHappinessAutoRegen = 1.0f;
     public int happinessAutoRegenAmount = 1;
     public int rotationNotEnoughLevel = 4;

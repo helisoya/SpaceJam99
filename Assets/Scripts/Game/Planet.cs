@@ -66,6 +66,7 @@ public class Planet : MonoBehaviour
     private int currentHealth;
     private int currentHappiness;
     private float currentNoHappinessTimer;
+    private float currentHappinessProblemTimer;
     private float currentHappinessAutoRegenTimer;
     private Stack<bool> problemsStack;
 
@@ -112,6 +113,8 @@ public class Planet : MonoBehaviour
         heatValue = data.defaultHeat;
         sunIsInFront = true;
         currentSunValue = data.sunFrontPos;
+
+        currentHappinessProblemTimer = data.secondsToHappinessDecreaseWhenProblem;
 
         checkModeEnabled = false;
 
@@ -443,6 +446,11 @@ public class Planet : MonoBehaviour
     public void AddProblem()
     {
         problemsStack.Push(true);
+
+        if (problemsStack.Count == 1)
+        {
+            currentHappinessProblemTimer = data.secondsToHappinessDecreaseWhenProblem;
+        }
     }
 
     /// <summary>
@@ -470,6 +478,15 @@ public class Planet : MonoBehaviour
             {
                 currentHappinessAutoRegenTimer = data.secondsToHappinessAutoRegen;
                 AddHappiness(data.happinessAutoRegenAmount);
+            }
+        }
+        else
+        {
+            currentHappinessProblemTimer -= Time.deltaTime;
+            if (currentHappinessProblemTimer <= 0)
+            {
+                currentHappinessProblemTimer = data.secondsToHappinessDecreaseWhenProblem;
+                AddHappiness(-data.happinessMalusWhenProblem);
             }
         }
 
