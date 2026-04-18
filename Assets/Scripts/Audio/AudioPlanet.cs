@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 
 public class AudioPlanet : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class AudioPlanet : MonoBehaviour
     [SerializeField] private EventReference cleanPollution;
     [SerializeField] private EventReference fullyPolluted;
     [SerializeField] private EventReference onProjectileSpawn;
-    
+    [SerializeField] private EventReference onSunIn;
+    [SerializeField] private EventReference onSunOut;
+
+    private EventInstance cleaningInstance;
 
     public void OnRotationLevelChange(int rotationLevel)
     {
@@ -45,7 +49,7 @@ public class AudioPlanet : MonoBehaviour
 
     public void OnTooHot()
     {
-        //RuntimeManager.PlayOneShot(tooHot);
+        RuntimeManager.PlayOneShot(tooHot);
     }
 
     public void OnTooCold()
@@ -53,18 +57,44 @@ public class AudioPlanet : MonoBehaviour
         RuntimeManager.PlayOneShot(tooCold);
     }
 
-    public void OnCleanPollution()
+    public void OnCleanPollution(bool active)
     {
-        RuntimeManager.PlayOneShot(cleanPollution);
+        if (active)
+        {
+            cleaningInstance = RuntimeManager.CreateInstance(cleanPollution);
+            cleaningInstance.start();
+            cleaningInstance.release();
+        }
+        else
+        {
+            cleaningInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            cleaningInstance.release();
+        }
+        
+        
     }
 
     public void OnFullyPolluted()
     {
-        //RuntimeManager.PlayOneShot(fullyPolluted);
+        RuntimeManager.PlayOneShot(fullyPolluted);
+        RuntimeManager.StudioSystem.setParameterByName("Pollution", 10);
     }
 
     public void OnProjectileSpawn()
     {
-        //RuntimeManager.PlayOneShot(onProjectileSpawn);
+        RuntimeManager.PlayOneShot(onProjectileSpawn);
+    }
+
+    public void OnSunMovement(bool sun)
+    {
+        if (sun)
+        {
+            RuntimeManager.PlayOneShot(onSunIn);
+        }
+
+        else
+        {
+            RuntimeManager.PlayOneShot(onSunOut);
+        }
     }
 }
