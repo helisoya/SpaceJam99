@@ -2867,6 +2867,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1189700240}
     m_Modifications:
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: onSunIn.Path
+      value: event:/Planet/SunWhooshIn
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: onSunIn.Guid.Data1
+      value: -1910244736
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: onSunIn.Guid.Data2
+      value: 1125852389
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: onSunIn.Guid.Data3
+      value: 1978496191
+      objectReference: {fileID: 0}
+    - target: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
+      propertyPath: onSunIn.Guid.Data4
+      value: -1739181805
+      objectReference: {fileID: 0}
     - target: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.75925
@@ -4230,7 +4250,19 @@ MonoBehaviour:
         m_CallState: 2
   onMoveSunInView:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 669149956}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnSunMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &1189700239
 Rigidbody:
   m_ObjectHideFlags: 0

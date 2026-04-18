@@ -93,3 +93,17 @@ MonoBehaviour:
       Data3: -221620049
       Data4: 1227825747
     Path: event:/UI/Alert
+  onSunIn:
+    Guid:
+      Data1: -1910244736
+      Data2: 1125852389
+      Data3: 1978496191
+      Data4: -1739181805
+    Path: event:/Planet/SunWhooshIn
+  onSunOut:
+    Guid:
+      Data1: -841192219
+      Data2: 1112297668
+      Data3: -1464536179
+      Data4: 1090649546
+    Path: event:/Planet/SunWhooshOut

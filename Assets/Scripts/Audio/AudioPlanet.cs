@@ -11,6 +11,8 @@ public class AudioPlanet : MonoBehaviour
     [SerializeField] private EventReference cleanPollution;
     [SerializeField] private EventReference fullyPolluted;
     [SerializeField] private EventReference onProjectileSpawn;
+    [SerializeField] private EventReference onSunIn;
+    [SerializeField] private EventReference onSunOut;
 
     private EventInstance cleaningInstance;
 
@@ -81,5 +83,18 @@ public class AudioPlanet : MonoBehaviour
     public void OnProjectileSpawn()
     {
         RuntimeManager.PlayOneShot(onProjectileSpawn);
+    }
+
+    public void OnSunMovement(bool sun)
+    {
+        if (sun)
+        {
+            RuntimeManager.PlayOneShot(onSunIn);
+        }
+
+        else
+        {
+            RuntimeManager.PlayOneShot(onSunOut);
+        }
     }
 }
