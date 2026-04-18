@@ -43,8 +43,11 @@ public class PlanetInput : MonoBehaviour
         InputCrankBottom(value.isPressed);
     }
 
-    void OnPauseMenu(InputValue value)
+    public void OnPauseMenu(InputValue value)
     {
+        if (gui.GetGUIMode() != GameGUI.GUIMode.Game)
+            return;
+
         paused = !paused;
 
         planet.SetActive(!paused);

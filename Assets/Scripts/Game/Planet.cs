@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.VFX;
 
 /// <summary>
 /// Handles the planet
@@ -14,12 +15,18 @@ public class Planet : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Renderer pollutionRenderer;
     [SerializeField] private PlanetData data;
     [SerializeField] private GameObject pollutionBrush;
     [SerializeField] private GameObject sunObj;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private GameObject projectileBarrier;
+
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem cleanVFX;
+    [SerializeField] private ParticleSystem dripsVFX;
+    [SerializeField] private ParticleSystem rotationVFX;
+    [SerializeField] private VisualEffect smokeVFX;
+    [SerializeField] private ParticleSystem confusedVFX;
 
     [Header("Audio")]
     [SerializeField] private UnityEvent<bool> onEnableCheckMode;
@@ -34,6 +41,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private UnityEvent<bool> onCleanPollution;
     [SerializeField] private UnityEvent onFullyPolluted;
     [SerializeField] private UnityEvent onProjectileSpawn;
+    [SerializeField] private UnityEvent<bool> onMoveSunInView;
 
     private int currentRotationLevel;
     private float currentRotationDecreaseTimer;
@@ -58,6 +66,7 @@ public class Planet : MonoBehaviour
     private int currentHealth;
     private int currentHappiness;
     private float currentNoHappinessTimer;
+    private float currentHappinessProblemTimer;
     private float currentHappinessAutoRegenTimer;
     private Stack<bool> problemsStack;
 
@@ -105,6 +114,8 @@ public class Planet : MonoBehaviour
         sunIsInFront = true;
         currentSunValue = data.sunFrontPos;
 
+        currentHappinessProblemTimer = data.secondsToHappinessDecreaseWhenProblem;
+
         checkModeEnabled = false;
 
         onRotationLevelChange.Invoke(currentRotationLevel);
@@ -120,6 +131,8 @@ public class Planet : MonoBehaviour
         float posZ = Mathf.Cos(Mathf.PI * 2 * currentSunValue) * data.sunOrbitRadius;
 
         sunObj.transform.position = data.sunOrbitCenter + new Vector3(posX, 0, posZ);
+
+        smokeVFX.Stop();
     }
 
     /// <summary>
@@ -165,6 +178,7 @@ public class Planet : MonoBehaviour
 	/// <param name="isFront">True if the sun is in front</param>
     public void SetSunPosition(bool isFront)
     {
+        onMoveSunInView.Invoke(isFront);
         sunIsInFront = isFront;
     }
 
@@ -379,9 +393,11 @@ public class Planet : MonoBehaviour
             if (currentPollutionBrushValueBottom >= 1.0f && currentPollutionBrushValueTop >= 1.0f && pollutionActive)
             {
                 // All clean
+                smokeVFX.Stop();
                 RemoveProblem();
                 pollutionActive = false;
                 GenerateNewPollutionAppearanceTimer();
+                cleanVFX.Play();
             }
         }
 
@@ -393,6 +409,7 @@ public class Planet : MonoBehaviour
             currentPollutionAppearanceTimer -= Time.deltaTime;
             if (currentPollutionAppearanceTimer <= 0)
             {
+                smokeVFX.Play();
                 currentPollutionLevel = 0.0f;
                 currentPollutionBrushValueBottom = 0;
                 currentPollutionBrushValueTop = 0;
@@ -419,7 +436,8 @@ public class Planet : MonoBehaviour
         float alphaValue = (currentPollutionLevel / data.maxPollutionLevel)
             * (1.0f - (currentPollutionBrushValueTop + currentPollutionBrushValueBottom) / 2.0f);
 
-        pollutionRenderer.material.SetColor("_BaseColor", new Color(1.0f, 1.0f, 1.0f, alphaValue));
+        smokeVFX.GetAnimationCurve("AlphaClip").keys[0].value = alphaValue;
+        smokeVFX.GetGradient("SmokeColors").alphaKeys[0].alpha = alphaValue;
     }
 
     /// <summary>
@@ -428,6 +446,11 @@ public class Planet : MonoBehaviour
     public void AddProblem()
     {
         problemsStack.Push(true);
+
+        if (problemsStack.Count == 1)
+        {
+            currentHappinessProblemTimer = data.secondsToHappinessDecreaseWhenProblem;
+        }
     }
 
     /// <summary>
@@ -457,6 +480,15 @@ public class Planet : MonoBehaviour
                 AddHappiness(data.happinessAutoRegenAmount);
             }
         }
+        else
+        {
+            currentHappinessProblemTimer -= Time.deltaTime;
+            if (currentHappinessProblemTimer <= 0)
+            {
+                currentHappinessProblemTimer = data.secondsToHappinessDecreaseWhenProblem;
+                AddHappiness(-data.happinessMalusWhenProblem);
+            }
+        }
 
         if (currentHappiness == 0)
         {
@@ -483,6 +515,7 @@ public class Planet : MonoBehaviour
         {
             if (currentRotationLevel == data.rotationSpeeds.Length - 1)
             {
+                confusedVFX.Play();
                 RemoveProblem();
                 currentRotationLevel = data.rotationLevelAfterTooMuch;
                 onRotationLevelChange.Invoke(currentRotationLevel);
@@ -539,6 +572,8 @@ public class Planet : MonoBehaviour
 
         if (currentRotationLevel < data.rotationSpeeds.Length - 1)
             currentRotationLevel++;
+
+        rotationVFX.Play();
 
         if (currentRotationLevel == data.rotationSpeeds.Length - 1)
         {
