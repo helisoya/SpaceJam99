@@ -2243,11 +2243,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
---- !u!1 &669149954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6477291139917941785, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
-  m_PrefabInstance: {fileID: 669149953}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &669149955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4749635240641196679, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
@@ -2258,7 +2253,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6142009652306690185, guid: f40161f7d90ea8d4681bbcb84b7827b5, type: 3}
   m_PrefabInstance: {fileID: 669149953}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669149954}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a986a0dbeee241c4fb84bd1bcfe50966, type: 3}
@@ -3205,13 +3200,13 @@ MonoBehaviour:
   onCleanPollution:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 669149954}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 669149956}
+        m_TargetAssemblyTypeName: AudioPlanet, Assembly-CSharp
+        m_MethodName: OnCleanPollution
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
