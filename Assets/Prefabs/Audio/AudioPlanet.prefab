@@ -107,3 +107,10 @@ MonoBehaviour:
       Data3: -1464536179
       Data4: 1090649546
     Path: event:/Planet/SunWhooshOut
+  onFullyCleaned:
+    Guid:
+      Data1: 366307740
+      Data2: 1268205621
+      Data3: 258100124
+      Data4: 373992971
+    Path: event:/Planet/Cleaned

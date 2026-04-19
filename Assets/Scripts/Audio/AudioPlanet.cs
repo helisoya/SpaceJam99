@@ -13,6 +13,7 @@ public class AudioPlanet : MonoBehaviour
     [SerializeField] private EventReference onProjectileSpawn;
     [SerializeField] private EventReference onSunIn;
     [SerializeField] private EventReference onSunOut;
+    [SerializeField] private EventReference onFullyCleaned;
 
     private EventInstance cleaningInstance;
 
@@ -37,6 +38,10 @@ public class AudioPlanet : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName("Health", health);
     }
 
+    public void OnPitchPlanet(int pitch)
+    {
+        RuntimeManager.StudioSystem.setParameterByName("PitchPlanet", pitch);
+    }
     public void OnImpact()
     {
         RuntimeManager.PlayOneShot(impact);
@@ -96,5 +101,10 @@ public class AudioPlanet : MonoBehaviour
         {
             RuntimeManager.PlayOneShot(onSunOut);
         }
+    }
+
+    public void OnFullyCleaned()
+    {
+        RuntimeManager.PlayOneShot(onFullyCleaned);
     }
 }
