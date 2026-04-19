@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MI_Sun
+  m_Name: MI_Rock
   m_Shader: {fileID: -6465566751694194690, guid: 36487420c50491749b791b61a3a1a045, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,19 +38,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CellDensity: 217.9
-    - _CellSpeed: 3
-    - _DistortionScale: 22.02
-    - _NoisePower: 5.63
-    - _NoiseScale: 36.09
+    - _CellDensity: 150
+    - _CellSpeed: 0
+    - _DistortionScale: 34.8
+    - _NoisePower: 4.8
+    - _NoiseScale: 36.71
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SolarFlare: 0.05
-    - _TwirlStrenght: 3.7
+    - _SolarFlare: -0.1
+    - _TwirlStrenght: 2.6
     m_Colors:
-    - _BaseColor: {r: 256, g: 20.013596, b: 0, a: 1}
+    - _BaseColor: {r: 2.5644968, g: 2.5644968, b: 2.5644968, a: 1}
     - _CellColor: {r: 10.680627, g: 0.106753685, b: 0, a: 1}
-    - _PanSpeed: {r: 0.1, g: 0.05, b: 0, a: 0}
+    - _PanSpeed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4729224832412584695

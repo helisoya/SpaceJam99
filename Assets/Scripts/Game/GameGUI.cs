@@ -38,6 +38,7 @@ public class GameGUI : MonoBehaviour
     [SerializeField] private Image modeSprite;
     [SerializeField] private RectTransform modeTransform;
     [SerializeField] private Sprite[] modeSprites;
+    [SerializeField] private Animator crankAnimator;
     [SerializeField] private float modeUnactiveTime = 2.0f;
     private float modeTimeRemaining;
     private bool modeVisible = false;
@@ -74,15 +75,8 @@ public class GameGUI : MonoBehaviour
         if (pauseRoot.activeInHierarchy)
             return;
 
-        if (modeVisible)
-        {
-            planetInput.IncrementMode();
-            modeTimeRemaining = modeUnactiveTime;
-        }
-        else
-        {
-            planetInput.InputCrankTop(enabled);
-        }
+        crankAnimator.SetFloat("Side", enabled ? -1 : 0);
+        planetInput.InputCrankTop(enabled);
     }
 
     /// <summary>
@@ -96,15 +90,8 @@ public class GameGUI : MonoBehaviour
         if (pauseRoot.activeInHierarchy)
             return;
 
-        if (modeVisible)
-        {
-            planetInput.IncrementMode();
-            modeTimeRemaining = modeUnactiveTime;
-        }
-        else
-        {
-            planetInput.InputCrankBottom(enabled);
-        }
+        crankAnimator.SetFloat("Side", enabled ? 1 : 0);
+        planetInput.InputCrankBottom(enabled);
     }
 
     /// <summary>
@@ -181,13 +168,14 @@ public class GameGUI : MonoBehaviour
             {
                 planetInput.IncrementMode();
                 modeTimeRemaining = modeUnactiveTime;
+                crankAnimator.SetFloat("Mode", (int)planetInput.GetInputMode());
             }
             else
             {
                 modeVisible = true;
                 modeTimeRemaining = modeUnactiveTime;
-                modeTransform.anchoredPosition = new Vector2(0, -50);
-                modeTransform.DOAnchorPos(new Vector2(0, 90), 0.3f).SetEase(Ease.InQuad);
+                modeTransform.anchoredPosition = new Vector2(0, 60);
+                modeTransform.DOAnchorPos(new Vector2(0, 150), 0.3f).SetEase(Ease.InQuad);
             }
         }
         else if (guiMode == GUIMode.Death)
@@ -238,7 +226,7 @@ public class GameGUI : MonoBehaviour
             if (modeTimeRemaining <= 0)
             {
                 modeVisible = false;
-                modeTransform.DOAnchorPos(new Vector2(0, -50), 0.3f).SetEase(Ease.InQuad);
+                modeTransform.DOAnchorPos(new Vector2(0, 60), 0.3f).SetEase(Ease.InQuad);
             }
         }
     }

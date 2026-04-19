@@ -32,7 +32,7 @@ public class PlanetInput : MonoBehaviour
         if (pointerOverUI && !paused)
             return;
 
-        InputCrankTop(value.isPressed);
+        //InputCrankTop(value.isPressed);
     }
 
     void OnRightClick(InputValue value) // Click on the bottom of the crank
@@ -40,7 +40,7 @@ public class PlanetInput : MonoBehaviour
         if (pointerOverUI && !paused)
             return;
 
-        InputCrankBottom(value.isPressed);
+        //InputCrankBottom(value.isPressed);
     }
 
     public void OnPauseMenu(InputValue value)

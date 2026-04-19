@@ -16,6 +16,8 @@ MonoBehaviour:
   maxHealth: 100
   secondsToHealthDecreaseNoHappiness: 1
   healthMalusNoHappiness: 1
+  secondsToHappinessDecreaseWhenProblem: 1
+  happinessMalusWhenProblem: 1
   secondsToHappinessAutoRegen: 1
   happinessAutoRegenAmount: 1
   rotationNotEnoughLevel: 4
