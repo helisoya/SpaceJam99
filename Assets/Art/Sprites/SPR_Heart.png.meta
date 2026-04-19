@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 837
+        y: 854
         width: 189
-        height: 183
+        height: 166
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,9 +136,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 824
+        y: 844
         width: 208
-        height: 183
+        height: 163
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,9 +158,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 405
-        y: 819
+        y: 844
         width: 225
-        height: 201
+        height: 176
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,9 +180,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 631
-        y: 859
+        y: 850
         width: 193
-        height: 156
+        height: 165
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,6 +219,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SPR_Heart_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 993
+        height: 448
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657f47bebe100dc4d9d632c5057f06de
+      internalID: 1164577644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPR_Heart_6
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 408
+        width: 997
+        height: 442
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 161, y: 136, z: 119, w: 122}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c658e7f8f939f45ade961db939bcf6
+      internalID: 1918604881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -240,6 +284,8 @@ TextureImporter:
       SPR_Heart_2: 161556442
       SPR_Heart_3: 6234289
       SPR_Heart_4: 1458282626
+      SPR_Heart_5: 1164577644
+      SPR_Heart_6: 1918604881
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
