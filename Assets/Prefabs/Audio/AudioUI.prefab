@@ -104,3 +104,10 @@ MonoBehaviour:
       Data3: 1361209782
       Data4: 1639484912
     Path: event:/Music/Music 2
+  gameOver:
+    Guid:
+      Data1: -1106323380
+      Data2: 1340328269
+      Data3: -480083047
+      Data4: -1329322699
+    Path: event:/Planet/GameOver
