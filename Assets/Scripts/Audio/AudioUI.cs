@@ -13,6 +13,7 @@ public class AudioUI : MonoBehaviour
     [SerializeField] private EventReference giveName;
     [SerializeField] private EventReference startGame;
     [SerializeField] private EventReference gameMusic;
+    [SerializeField] private EventReference gameOver;
 
     EventInstance gameMusicInstance;
     
@@ -50,7 +51,6 @@ public class AudioUI : MonoBehaviour
         gameMusicInstance = RuntimeManager.CreateInstance(gameMusic);
         gameMusicInstance.start();
         gameMusicInstance.release();
-        
     }
 
     public void OnStartGame()
@@ -59,10 +59,22 @@ public class AudioUI : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName("TutoDone", 1);
     }
 
-    public void OnEndGame()
+    public void OnChangeMode(GameGUI.GUIMode mode)
     {
-        gameMusicInstance.stop(STOP_MODE.ALLOWFADEOUT);
-        gameMusicInstance.release();
+        if (mode == GameGUI.GUIMode.Death)
+        {
+            gameMusicInstance.stop(STOP_MODE.ALLOWFADEOUT);
+            gameMusicInstance.release();
+            RuntimeManager.PlayOneShot(gameOver);
+        }
+
+        if (mode == GameGUI.GUIMode.MainMenu)
+        {
+            gameMusicInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+
     }
+    
+ 
 
 }
