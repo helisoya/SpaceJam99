@@ -15,6 +15,9 @@ public class PlanetData : ScriptableObject
     public int rotationNotEnoughLevel = 4;
     public int rotationNotEnoughHappinessMalus = 5;
 
+    [Header("Check")]
+    public float secondsToCheckModeEmotion = 20.0f;
+
 
     [Header("Rotation")]
     public float[] rotationSpeeds;

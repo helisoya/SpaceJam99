@@ -4,7 +4,6 @@ using UnityEditor;
 
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.VFX;
 using DG.Tweening;
@@ -30,6 +29,14 @@ public class Planet : MonoBehaviour
     [SerializeField] private ParticleSystem rotationVFX;
     [SerializeField] private VisualEffect smokeVFX;
     [SerializeField] private ParticleSystem confusedVFX;
+    [SerializeField] private SpriteRenderer emotionRenderer;
+    [SerializeField] private Sprite spriteHappy;
+    [SerializeField] private Sprite spriteNeutral;
+    [SerializeField] private Sprite spriteSad;
+    [SerializeField] private Renderer heartRenderer;
+    [SerializeField] private Color goodColor;
+    [SerializeField] private Color neutralColor;
+    [SerializeField] private Color badColor;
 
     [Header("Audio")]
     [SerializeField] private UnityEvent<bool> onEnableCheckMode;
@@ -43,8 +50,10 @@ public class Planet : MonoBehaviour
     [SerializeField] private UnityEvent onTooCold;
     [SerializeField] private UnityEvent<bool> onCleanPollution;
     [SerializeField] private UnityEvent onFullyPolluted;
+    [SerializeField] private UnityEvent onFullyCleaned;
     [SerializeField] private UnityEvent onProjectileSpawn;
     [SerializeField] private UnityEvent<bool> onMoveSunInView;
+    [SerializeField] private UnityEvent<int> onStart;
 
     private int currentRotationLevel;
     private float currentRotationDecreaseTimer;
@@ -81,6 +90,7 @@ public class Planet : MonoBehaviour
     public bool projectileBarrierEnabled { get { return projectileBarrier.activeInHierarchy; } }
 
     private bool checkModeEnabled;
+    private float checkModeCurrentTimerToEmotion;
 
     private string planetName;
     private bool isActive;
@@ -89,6 +99,8 @@ public class Planet : MonoBehaviour
 
     void Start()
     {
+        onStart.Invoke(Random.Range(0, 19));
+
         isActive = false;
         currentRotationLevel = data.defaultRotationLevel;
         currentRotationDecreaseTimer = data.secondsToRotationDecrease;
@@ -220,6 +232,7 @@ public class Planet : MonoBehaviour
         UpdatePollution();
         UpdateHeat();
         UpdateProjectiles();
+        UpdateCheckMode();
     }
 
     /// <summary>
@@ -251,6 +264,45 @@ public class Planet : MonoBehaviour
             currentNoHappinessTimer = data.secondsToHealthDecreaseNoHappiness;
 
         onHappinessChange.Invoke(currentHappiness);
+    }
+
+    /// <summary>
+	/// Updates the check mode
+	/// </summary>
+    private void UpdateCheckMode()
+    {
+        if (!checkModeEnabled)
+            return;
+
+        checkModeCurrentTimerToEmotion -= Time.deltaTime;
+        if (checkModeCurrentTimerToEmotion <= 0)
+        {
+            checkModeCurrentTimerToEmotion = data.secondsToCheckModeEmotion;
+
+            if (currentHappiness <= 33)
+                emotionRenderer.sprite = spriteSad;
+            else if (currentHappiness <= 69)
+                emotionRenderer.sprite = spriteNeutral;
+            else
+                emotionRenderer.sprite = spriteHappy;
+
+            emotionRenderer.DOColor(Color.white, 1.0f).SetEase(Ease.OutQuad).onComplete +=
+            () =>
+            {
+                emotionRenderer.DOColor(Color.clear, 1.0f).SetDelay(1).SetEase(Ease.OutQuad);
+            };
+        }
+
+
+        Color targetColor = goodColor;
+
+        if (currentHealth <= 33)
+            targetColor = badColor;
+        else if (currentHealth <= 69)
+            targetColor = neutralColor;
+
+        heartRenderer.material.SetColor("_GalaxyColor",
+            Color.Lerp(heartRenderer.material.GetColor("_GalaxyColor"), targetColor, Time.deltaTime * 5.0f));
     }
 
     /// <summary>
@@ -423,6 +475,7 @@ public class Planet : MonoBehaviour
             {
                 // All clean
                 smokeVFX.Stop();
+                onFullyCleaned.Invoke();
                 RemoveProblem();
                 pollutionActive = false;
                 GenerateNewPollutionAppearanceTimer();
@@ -694,5 +747,11 @@ public class Planet : MonoBehaviour
     {
         checkModeEnabled = enabled;
         onEnableCheckMode.Invoke(enabled);
+        checkModeCurrentTimerToEmotion = 0;
+
+        if (checkModeEnabled)
+            heartRenderer.material.DOFloat(1.0f, "_Alpha", 1.0f).SetEase(Ease.OutQuad);
+        else
+            heartRenderer.material.DOFloat(0.0f, "_Alpha", 1.0f).SetEase(Ease.OutQuad);
     }
 }
