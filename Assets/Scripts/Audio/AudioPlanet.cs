@@ -40,7 +40,7 @@ public class AudioPlanet : MonoBehaviour
 
     public void OnPitchPlanet(int pitch)
     {
-        RuntimeManager.StudioSystem.setParameterByName("PitchPlanet", pitch);
+        RuntimeManager.StudioSystem.setParameterByName("PlanetPitch", pitch);
     }
     public void OnImpact()
     {
