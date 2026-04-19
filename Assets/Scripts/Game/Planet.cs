@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.VFX;
+using DG.Tweening;
 
 /// <summary>
 /// Handles the planet
@@ -20,10 +21,12 @@ public class Planet : MonoBehaviour
     [SerializeField] private GameObject sunObj;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private GameObject projectileBarrier;
+    [SerializeField] private Renderer planetRenderer;
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem cleanVFX;
     [SerializeField] private ParticleSystem dripsVFX;
+    [SerializeField] private ParticleSystem freezeVFX;
     [SerializeField] private ParticleSystem rotationVFX;
     [SerializeField] private VisualEffect smokeVFX;
     [SerializeField] private ParticleSystem confusedVFX;
@@ -229,8 +232,7 @@ public class Planet : MonoBehaviour
         if (currentHealth == 0)
         {
             // Dead
-            rb.useGravity = true;
-            rb.constraints = RigidbodyConstraints.None;
+            rb.transform.DOScale(Vector3.zero, 1.0f).SetEase(Ease.OutQuad);
         }
 
         onHealthChange.Invoke(currentHealth);
@@ -274,18 +276,44 @@ public class Planet : MonoBehaviour
 
         if (!heatIsBad && (heatValue <= data.freezeTreshold || heatValue >= data.overheatTreshold))
         {
-            if (heatValue <= data.freezeTreshold)
+            bool tooHot = heatValue >= data.overheatTreshold;
+            if (!tooHot)
+            {
                 onTooCold.Invoke();
+                freezeVFX.Play();
+            }
             else
+            {
                 onTooHot.Invoke();
+                dripsVFX.Play();
+            }
             heatIsBad = true;
             AddHappiness(data.heatBadHappinessMalus);
             AddProblem();
+
+            foreach (Material material in planetRenderer.materials)
+            {
+                material.SetFloat("_HotLerpActive", tooHot ? 1 : 0);
+                material.DOFloat(1.0f, "_LerpHot", 1.0f).SetEase(Ease.OutQuad);
+                material.DOFloat(1.0f, "_LerpFrozen", 1.0f).SetEase(Ease.OutQuad);
+                material.DOComplete();
+            }
+
         }
-        else if (heatIsBad)
+        else if (heatIsBad && heatValue > data.freezeTreshold && heatValue < data.overheatTreshold)
         {
-            heatIsBad = true;
+            heatIsBad = false;
             RemoveProblem();
+
+            dripsVFX.Stop();
+            freezeVFX.Stop();
+
+            foreach (Material material in planetRenderer.materials)
+            {
+                material.DOComplete();
+                material.DOFloat(0.0f, "_LerpHot", 1.0f).SetEase(Ease.OutQuad);
+                material.DOFloat(0.0f, "_LerpFrozen", 1.0f).SetEase(Ease.OutQuad);
+            }
         }
     }
 
@@ -304,6 +332,7 @@ public class Planet : MonoBehaviour
             float posY = -Mathf.Cos(data.projectileBarrierValueOffset + projectileBarrierCurrentValue) * data.projectileBarrierRadius;
 
             projectileBarrier.transform.position = new Vector3(posX, posY, 0);
+            projectileBarrier.transform.eulerAngles = new Vector3(0, 0, -45f + 90.0f * (projectileBarrierCurrentValue / (Mathf.PI / 2.0f)));
         }
 
         currentProjectileSpawnTimer -= Time.deltaTime;

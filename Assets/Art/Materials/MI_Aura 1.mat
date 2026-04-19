@@ -60,7 +60,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelNoiseScale: 50
+    - _HotLerpActive: 1
     - _InteriorSpread: 20
+    - _LerpFrozen: 0
+    - _LerpHot: 0
     - _PowerFresnel: 1.92
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -74,6 +77,8 @@ Material:
     m_Colors:
     - _Color: {r: 3.257786, g: 1.3755784, b: 13.886792, a: 1}
     - _FresnelColor: {r: 4.082981, g: 3.6790385, b: 7.0266323, a: 1}
+    - _FrozenColor: {r: 0, g: 2.37854, b: 4, a: 1}
+    - _HotColor: {r: 3.76284, g: 0.03612783, b: 0, a: 1}
     - _InteriorColor: {r: 23.665157, g: 42.15978, b: 38.618256, a: 1}
     - _InteriorPosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpeedStars01: {r: 0.01, g: -0.005, b: 0, a: 0}
