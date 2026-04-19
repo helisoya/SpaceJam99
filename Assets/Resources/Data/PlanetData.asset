@@ -22,6 +22,7 @@ MonoBehaviour:
   happinessAutoRegenAmount: 1
   rotationNotEnoughLevel: 4
   rotationNotEnoughHappinessMalus: 5
+  secondsToCheckModeEmotion: 20
   rotationSpeeds:
   - 0
   - 0.1
@@ -45,7 +46,7 @@ MonoBehaviour:
   pollutionIncreasePerSeconds: 5
   pollutionHappinessMalus: 20
   pollutionHealthMalus: 10
-  pollutionBrushSpeed: 0.5
+  pollutionBrushSpeed: 1
   pollutionBrushNotActiveSpeed: 10
   pollutionSideCleanHappinessBonus: 5
   sunOrbitCenter: {x: 0, y: 0, z: 0}

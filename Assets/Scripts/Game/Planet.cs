@@ -747,7 +747,7 @@ public class Planet : MonoBehaviour
     {
         checkModeEnabled = enabled;
         onEnableCheckMode.Invoke(enabled);
-        checkModeCurrentTimerToEmotion = data.secondsToCheckModeEmotion;
+        checkModeCurrentTimerToEmotion = 0;
 
         if (checkModeEnabled)
             heartRenderer.material.DOFloat(1.0f, "_Alpha", 1.0f).SetEase(Ease.OutQuad);
